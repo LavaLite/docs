@@ -2,8 +2,6 @@
 The package allows the user to upload and download images through means of multiple and single entries into the website.
 
 The basic model for the package can be implemented through the following code. 
-##### PHP
-
 
     use Litepie\Database\Model;
     use Litepie\Filer\Traits\Filer;
@@ -24,22 +22,18 @@ The code can be divided as an single and multiple, as decided by the user.
 
 Eg. Single can be used to implement a profile picture, while multiple selection can be implemented for a photo gallery. 
 
-##### PHP
-```
-<?
+    // Model variables for module variable.
+    'model'     => [
+        ........
+        'uploadfolder' => '/uploads/page',
 
-// Model variables for module variable.
-'model'     => [
-    ........
-    'uploadfolder' => '/uploads/page',
-
-    'uploads'      => [
-        'single'   => ['single_file_field_1', 'single_file_field_2'],
-        'multiple' => ['multiple_file_field_1', 'multiple_file_field_2'],
-    ],
+        'uploads'      => [
+            'single'   => ['single_file_field_1', 'single_file_field_2'],
+            'multiple' => ['multiple_file_field_1', 'multiple_file_field_2'],
+        ],
 
 
-```
+
 ### File Upload Interface
 The file upload interface can be generated on the user side, implementing the following code. The would be open to allowing the user to upload all types of files.
 
