@@ -69,22 +69,19 @@ The data would consist of Folder Name, File Name, Caption, Time & EFolder.
     ]
 
 ### The following lines of code can be found for a single uploaded file.
-##### PHP
-```
 
-Single
-{  
-  "folder":"\/uploads\/pages\/2016\/05\/07\/050447617\/images\/",
-  "file":"file-2.png",
-  "caption":"File 2",
-  "time":"2016-05-11 04:46:49",
-  "efolder":"pages\/066zCXfgcnxBl0\/images"
-}
-```
+
+    Single
+    {  
+      "folder":"\/uploads\/pages\/2016\/05\/07\/050447617\/images\/",
+      "file":"file-2.png",
+      "caption":"File 2",
+      "time":"2016-05-11 04:46:49",
+      "efolder":"pages\/066zCXfgcnxBl0\/images"
+    }
+
 The following can be implemented in order to return the URL required for uploading the respective files.
-##### PHP
-```
-<?
 
-$page->getUploadURL('field_name'))
-```
+
+    $page->getUploadURL('field_name'))
+
