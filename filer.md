@@ -3,19 +3,18 @@ The package allows the user to upload and download images through means of multi
 
 The basic model for the package can be implemented through the following code. 
 ##### PHP
-```
-<?
 
-use Litepie\Database\Model;
-use Litepie\Filer\Traits\Filer;
 
-....
+    use Litepie\Database\Model;
+    use Litepie\Filer\Traits\Filer;
 
-class YourModelClass extends Model
-{
-    use Filer ...;
+    ....
 
-```
+    class YourModelClass extends Model
+    {
+        use Filer ...;
+
+
 ### Implementing the File Upload Function
 The model has a **config** file.
 
