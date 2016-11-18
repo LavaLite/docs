@@ -38,40 +38,36 @@ Eg. Single can be used to implement a profile picture, while multiple selection 
 The file upload interface can be generated on the user side, implementing the following code. The would be open to allowing the user to upload all types of files.
 
 A further iteration on choosing a particular type of files (Eg. Images, Word, Excel) can be done ahead. 
-##### PHP
- ```
- <?
 
-{!! Filer::uploader('multiple_file_field_1', $page->getUploadURL('multiple_file_field_1')) !!}
+    {!! Filer::uploader('multiple_file_field_1', $page->getUploadURL('multiple_file_field_1')) !!}
 
- ```
+
  ### Single VS Multiple Upload
  The following code can be found once the file has been uploaded in a JSON format online. 
 
 The code for the multiple upload would be as follows. 
 
 The data would consist of Folder Name, File Name, Caption, Time & EFolder. 
-##### PHP
-```
 
-Multiple
-[  
-   {  
-      "folder":"\/uploads\/pages\/2016\/05\/07\/050447617\/images\/",
-      "file":"file.jpg",
-      "caption":"File",
-      "time":"2016-05-11 04:46:48",
-      "efolder":"pages\/066zCXfgcnxBl0\/images"
-   },
-   {  
-      "folder":"\/uploads\/pages\/2016\/05\/07\/050447617\/images\/",
-      "file":"file-2.png",
-      "caption":"File 2",
-      "time":"2016-05-11 04:46:49",
-      "efolder":"pages\/066zCXfgcnxBl0\/images"
-   }
-]
-```
+
+    Multiple
+    [  
+       {  
+          "folder":"\/uploads\/pages\/2016\/05\/07\/050447617\/images\/",
+          "file":"file.jpg",
+          "caption":"File",
+          "time":"2016-05-11 04:46:48",
+          "efolder":"pages\/066zCXfgcnxBl0\/images"
+       },
+       {  
+          "folder":"\/uploads\/pages\/2016\/05\/07\/050447617\/images\/",
+          "file":"file-2.png",
+          "caption":"File 2",
+          "time":"2016-05-11 04:46:49",
+          "efolder":"pages\/066zCXfgcnxBl0\/images"
+       }
+    ]
+
 ### The following lines of code can be found for a single uploaded file.
 ##### PHP
 ```
