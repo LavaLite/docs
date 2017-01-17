@@ -1,6 +1,5 @@
 ## Filer
-The package allows the user to upload and download images through means of multiple and single entries into the website.
-The basic model for the package can be implemented through the following code. 
+Filer is used for managing files on the website / application. 
 
     use Litepie\Database\Model;
     use Litepie\Filer\Traits\Filer;
@@ -11,66 +10,60 @@ The basic model for the package can be implemented through the following code.
     {
         use Filer ...;
 
-### Implementing the File Upload Function
-The model has a **config** file.
-The code that must be implemented in order implement the file upload function is as follows.
-The code can be divided as an single and multiple, as decided by the user. 
-Eg. Single can be used to implement a profile picture, while multiple selection can be implemented for a photo gallery. 
 
-    // Model variables for module variable.
+### Configuration
+Each model has a `config` file and the developer can specify its root uploading folder and file upload type using this configuration. The upload type is mainly divided into two, single and multiple for example in a products table the main image can be defined as single and gallery images can be defined as multiple. 
+
+    // Model variables for file upload.
     'model'     => [
         ........
-        'uploadfolder' => '/uploads/page',
+        'upload_folder' => '/package/modue',
 
         'uploads'      => [
-            'single'   => ['single_file_field_1', 'single_file_field_2'],
-            'multiple' => ['multiple_file_field_1', 'multiple_file_field_2'],
+            'single'   => ['image''],
+            'multiple' => ['images''],
         ],
 
+### View
+For displaying, editing or uploading files on a view can be easy accoomplised using the below code snippets.
+
+    {!! $model->fileUpload('field_name')!!} // to display file uploader (dropzone)
+    {!! $model->fileEdit('field_name')!!} // to display file editor 
+    {!! $model->fileShow('field_name')!!} // to display files 
 
 
-### File Upload Interface
-The file upload interface can be generated on the user side, implementing the following code. The would be open to allowing the user to upload all types of files. A further iteration on choosing a particular type of files (Eg. Images, Word, Excel) can be done ahead. 
+### Storage
+Files for each record of the table is stored on individual folders and corresponding details of the files are stored on the table in JSON format. Folder for uploading the files are stored in the each record upload_folder attribute. And the JSON data of each file contain details such as  Folder Name, File Name, Caption, Date & Time. 
 
-    {!! Filer::uploader('multiple_file_field_1', $page->getUploadURL('multiple_file_field_1')) !!}
+Example JSON file formats for multiple file field.
 
-
-### Single VS Multiple Upload
-The following code can be found once the file has been uploaded in a JSON format online. The code for the multiple upload would be as follows. The data would consist of Folder Name, File Name, Caption, Time & EFolder. 
-
-
-    Multiple
     [  
        {  
-          "folder":"\/uploads\/pages\/2016\/05\/07\/050447617\/images\/",
+          "folder":"\/2016\/05\/07\/050447617\/images\/",
           "file":"file.jpg",
           "caption":"File",
-          "time":"2016-05-11 04:46:48",
-          "efolder":"pages\/066zCXfgcnxBl0\/images"
+          "time":"2016-05-11 04:46:48"
        },
        {  
-          "folder":"\/uploads\/pages\/2016\/05\/07\/050447617\/images\/",
+          "folder":"\/2016\/05\/07\/050447617\/images\/",
           "file":"file-2.png",
           "caption":"File 2",
-          "time":"2016-05-11 04:46:49",
-          "efolder":"pages\/066zCXfgcnxBl0\/images"
+          "time":"2016-05-11 04:46:49"
        }
     ]
 
-### The following lines of code can be found for a single uploaded file.
+Example JSON file formats for single file field
 
 
-    Single
     {  
-      "folder":"\/uploads\/pages\/2016\/05\/07\/050447617\/images\/",
+      "folder":"\/2016\/05\/07\/050447617\/images\/",
       "file":"file-2.png",
       "caption":"File 2",
-      "time":"2016-05-11 04:46:49",
-      "efolder":"pages\/066zCXfgcnxBl0\/images"
+      "time":"2016-05-11 04:46:49"
     }
+In addition to the default details you can pass additional details form the view.
 
-The following can be implemented in order to return the URL required for uploading the respective files.
+The following can be used for getting  URL required for uploading the files.
 
 
-    $page->getUploadURL('field_name'))
-
+    $model->getUploadURL('field_name'))
