@@ -18,52 +18,54 @@ Each model has a `config` file and the developer can specify its root uploading 
     'model'     => [
         ........
         'upload_folder' => '/package/modue',
+        'uploads'       =>[
+                        'Field_name' =>  [
+                        'count' => 10,
+                        'type'  => 'image',
+          		                         ],
+       		              ],
+        'casts'        => [
+                        'field_name' => 'array',
+                          ]
+                   
 
-        'uploads'      => [
-            'single'   => ['image''],
-            'multiple' => ['images''],
-        ],
 
 ### View
 For displaying, editing or uploading files on a view can be easy accoomplised using the below code snippets.
 
-    {!! $model->fileUpload('field_name')!!} // to display file uploader (dropzone)
-    {!! $model->fileEdit('field_name')!!} // to display file editor 
-    {!! $model->fileShow('field_name')!!} // to display files 
-
+    // to upload files(dropzone)
+    {!! $model->files('field_name')
+    ->url($model->getUploadURL('field_name'))
+    ->uploader()!!}
+                              
+    // to edit files
+    {!! $model->files('field_name')
+    ->editor() !!}
+                               
+    // to display files
+    {!! $model->files('field_name') !!}    
+    
 
 ### Storage
 Files for each record of the table is stored on individual folders and corresponding details of the files are stored on the table in JSON format. Folder for uploading the files are stored in the each record upload_folder attribute. And the JSON data of each file contain details such as  Folder Name, File Name, Caption, Date & Time. 
 
 Example JSON file formats for multiple file field.
 
-    [  
-       {  
-          "folder":"\/2016\/05\/07\/050447617\/images\/",
-          "file":"file.jpg",
-          "caption":"File",
-          "time":"2016-05-11 04:46:48"
-       },
-       {  
-          "folder":"\/2016\/05\/07\/050447617\/images\/",
-          "file":"file-2.png",
-          "caption":"File 2",
-          "time":"2016-05-11 04:46:49"
-       }
-    ]
-
-Example JSON file formats for single file field
+    [0] => Array
+    (
+    [caption] => 0 neu d3 5e34ea5ff3f5d1e13e91a97f292505e1
+    [folder] => 2017/04/18/062918175/images
+    [time] => 2017-04-18 06:29:55
+    [file] => 505e1.jpg
+    [url] => http://192.168.1.199/lavalite/cms/5.2/public/download/litecms.blog/blog/9DD3CZF0F4q6vJ/images/0-neu.jpg
+    )
 
 
-    {  
-      "folder":"\/2016\/05\/07\/050447617\/images\/",
-      "file":"file-2.png",
-      "caption":"File 2",
-      "time":"2016-05-11 04:46:49"
-    }
 In addition to the default details you can pass additional details form the view.
 
 The following can be used for getting  URL required for uploading the files.
 
 
-    $model->getUploadURL('field_name'))
+    {!! $model->files('field_name')
+     ->url($model->getUploadUrl('field_name'))
+     ->dropzone()!!}
