@@ -1,5 +1,3 @@
-# Installation
-
 - [Installation](#installation)
 - [Configuration](#configuration)
     - [Basic Configuration](#basic-configuration)

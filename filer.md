@@ -1,4 +1,4 @@
-## Filer
+
 Filer is used for managing files on the website / application. 
 
     use Litepie\Database\Model;

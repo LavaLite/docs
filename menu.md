@@ -1,4 +1,3 @@
-## Menu
 ###### Manages Menu for the project
 This is a Laravel 5 package that provides menu interface for lavalite framework.
 

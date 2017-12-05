@@ -1,4 +1,3 @@
-## Node
 The model traits can implement functionality. The node in the design can be divided into `Simple Tree` as well as a `Nested Tree`
 
 ### Simple Tree

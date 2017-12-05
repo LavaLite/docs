@@ -1,4 +1,4 @@
-### Revision
+
 The Lavalite model is capable of recording the history of changes in values by storing revisions. 
 
 The revisions can be stored for the model, you could further apply the ***Litepie\Rivision\Traits\Revision*** trait and declare a ***$revision*** property with an array containing the attributes to monitor for changes. 

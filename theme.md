@@ -1,4 +1,4 @@
-### Theme
+
 You can mange themes and layouts of Lavalite.
 #### Usage
 Theme has many features to help you get started with Laravel
