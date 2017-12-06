@@ -19,14 +19,15 @@ Theme has many features to help you get started with Laravel
 - [Widgets design structure](#widgets-design-structure)
 - [Using theme global](#using-theme-global)
 
+<a name="configuration"></a>
 #### Configuration
 After the config is published, you will see the config file in "config/theme", but all the configuration can be replaced by a config file inside a theme.
 
 > Theme config location: /public/themes/[theme]/config.php
 
 The config is convenient for setting up basic CSS/JS, partial composer, breadcrumb template and also metas.
-##### PHP
-```
+
+```php
 'events' => array(
 
     // Before event inherit from package config and the theme that call before,
@@ -81,9 +82,11 @@ The config is convenient for setting up basic CSS/JS, partial composer, breadcru
 
 )
 ```
+
+<a name="basic-usage"></a>
 #### Basic usage
-##### PHP
-```
+
+```php
 namespace App\Http\Controllers;
 
 use Theme;
@@ -123,25 +126,28 @@ class HomeController extends Controller {
 
 }
 ```
+
 Get only content "$theme->of('home.index')->content();".
 
 Finding from both theme's view and application's view.
-##### PHP
-```
+
+```php
 $theme = Theme::uses('default')->layout('default');
 
 return $theme->watch('home.index')->render();
 ```
+
 To check whether a theme exists.
 
-##### PHP
-```
+
+```php
 // Returns boolean.
 Theme::exists('themename');
 ```
+
 To find the location of a view.
-##### PHP
-```
+
+```php
 $which = $theme->scope('home.index')->location();
 
 echo $which; // themer::views.home.index
@@ -150,39 +156,49 @@ $which = $theme->scope('home.index')->location(true);
 
 echo $which; // ./public/themes/name/views/home/index.blade.php
 ```
+
+<a name="compiler"></a>
 #### Compiler
 Theme supports PHP, Blade and Twig. To use Blade or Twig template you just create a file with extension
 ```
+
 [file].blade.php or [file].twig.php
 ```
+
+<a name="render-from-string"></a>
 #### Render from string
-##### PHP
-```
+
+```php
 // Blade template.
 return $theme->string('<h1>{{ $name }}</h1>', array('name' => 'Litepie'), 'blade')->render();
 
 // Twig Template
 return $theme->string('<h1>{{ name }}</h1>', array('name' => 'Litepie'), 'twig')->render();
 ```
+
+<a name="compile-string"></a>
 #### Compile string
-##### PHP
-```
+
+```php
 // Blade compile.
 $template = '<h1>Name: {{ $name }}</h1><p>{{ Theme::widget("WidgetIntro", array("userId" => 9999, "title" => "Demo Widget"))->render() }}</p>';
 
 echo Theme::blader($template, array('name' => 'Litepie'));
 ```
-##### PHP
-```
+
+
+```php
 // Twig compile.
 $template = '<h1>Name: {{ name }}</h1><p>{{ Theme.widget("WidgetIntro", {"userId" : 9999, "title" : "Demo Widget"}).render() }}</p>';
 
 echo Theme::twigy($template, array('name' => 'Litepie'));
 ```
+
+<a name="symlink-from-another-view"></a>
 #### Symlink from another view
 This is a nice feature when you have multiple files that have the same name, but need to be located as a separate one.
-##### PHP
-```
+
+```php
 // Theme A : /public/themes/a/views/welcome.blade.php
 
 // Theme B : /public/themes/b/views/welcome.blade.php
@@ -196,10 +212,12 @@ Theme::symlink('a');
 
 // That's it!
 ```
+
+<a name="basic-usage-of-assets"></a>
 #### Basic usage of assets
 Add assets in your route or controller.
-##### PHP
-```
+
+```php
 // path: public/css/style.css
 $theme->asset()->add('core-style', 'css/style.css');
 
@@ -215,12 +233,13 @@ $theme->asset()->usePath()->add('custom', 'css/custom.css', array('core-style'))
 $theme->asset()->container('footer')->usePath()->add('custom', 'js/custom.js', array('core-script'));
 ```
 
+
 You can force use theme to look up existing theme by passing parameter to method:
  $theme->asset()->usePath('default')
 
 Writing in-line style or script.
-##### PHP
-```
+
+```php
 // Dependency with.
 $dependencies = array();
 
@@ -246,35 +265,40 @@ $theme->asset()->writeContent('custom-inline-script', '
 ', $dependencies);
 ```
 
+
 Render styles and scripts in your layout.
-##### PHP
-```
+
+```php
 // Without container
 echo Theme::asset()->styles();
 
 // With "footer" container
 echo Theme::asset()->container('footer')->scripts();
 ```
+
 Direct path to theme asset.
-##### PHP
-```
+
+```php
 echo Theme::asset()->url('img/image.png');
 ```
+
+<a name="preparing-group-of-assets"></a>
 #### Preparing group of assets.
 Some assets you don't want to add on a page right now, but you still need them sometimes, so "cook" and "serve" is your magic.
 
 Cook your assets
-##### PHP
-```
+
+```php
 Theme::asset()->cook('backbone', function($asset)
 {
     $asset->add('backbone', '//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js');
     $asset->add('underscorejs', '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js');
 });
 ```
+
 You can prepare on a global in package config.
-##### PHP
-```
+
+```php
 // Location: config/theme/config.php
 ....
     'events' => array(
@@ -295,15 +319,19 @@ You can prepare on a global in package config.
     )
 ....
 ```
+
 Serve theme when you need.
-##### PHP
-```
+
+```php
 // At the controller.
 Theme::asset()->serve('backbone');
 ```
+
 Then you can get output.
+<a name="html"></a>
 ##### HTML
 ```
+
 ...
 <head>
     <?php echo Theme::asset()->scripts(); ?>
@@ -313,10 +341,12 @@ Then you can get output.
 </head>
 ...
 ```
+
+<a name="partials"></a>
 #### Partials
 Render a partial in your layouts or views.
-##### PHP
-```
+
+```php
 // This will look up to "public/themes/[theme]/partials/header.php"
 echo Theme::partial('header', array('title' => 'Header'));
 
@@ -325,14 +355,16 @@ echo Theme::partial('header', array('title' => 'Header'));
 echo Theme::partialWithLayout('header', array('title' => 'Header'));
 ```
 
+
 Finding from both theme's partial and application's partials.
-##### PHP
-```
+
+```php
 echo Theme::watchPartial('header', array('title' => 'Header'));
 ```
+
 Partial composer.
-##### PHP
-```
+
+```php
 $theme->partialComposer('header', function($view)
 {
     $view->with('key', 'value');
@@ -344,11 +376,13 @@ $theme->partialComposer('header', function($view)
     $view->with('key', 'value');
 }, 'layout-name');
 ```
+
+<a name="working-with-regions"></a>
 #### Working with regions
 
 Theme has magic methods to set, prepend and append anything.
-##### PHP
-```
+
+```php
 $theme->setTitle('Your title');
 
 $theme->appendTitle('Your appended title');
@@ -364,9 +398,10 @@ $theme->setFoo('foo');
 $theme->set('foo', 'foo');
 ```
 
+
 Render in your layout or view.
-##### PHP
-```
+
+```php
 Theme::getAnything();
 
 Theme::getFoo();
@@ -381,9 +416,10 @@ Theme::place('foo', 'default-value-if-it-does-not-exist');
 
 Theme::get('foo');
 ```
+
 Check if the place exists or not.
-##### PHP
-```
+
+```php
 <?php if (Theme::has('title')) : ?>
     <?php echo Theme::place('title'); ?>
 <?php endif; ?>
@@ -394,9 +430,10 @@ Check if the place exists or not.
     <?php echo Theme::getTitle(); ?>
 <?php endif; ?>
 ```
+
 Get argument assigned to content in layout or region.
-##### PHP
-```
+
+```php
 Theme::getContentArguments();
 
 // or
@@ -407,26 +444,30 @@ Theme::getContentArgument('name');
 
 Theme::hasContentArgument('name');
 ```
+
 Theme::place('content') is a reserve region to render sub-view.
+<a name="preparing-data-to-view"></a>
 #### Preparing data to view
 Sometimes you don't need to execute heavy processing, so you can prepare and use when you need it.
-##### PHP
-```
+
+```php
 $theme->bind('something', function()
 {
     return 'This is bound parameter.';
 });
 ```
+
 Using bound data on view.
-##### PHP
-```
+
+```php
 echo Theme::bind('something');
 ```
 
+<a name="breadcrumb"></a>
 #### Breadcrumb
 In order to use breadcrumbs, follow the instruction below:
-##### PHP
-```
+
+```php
 $theme->breadcrumb()->add('label', 'http://...')->add('label2', 'http:...');
 
 // or
@@ -442,18 +483,20 @@ $theme->breadcrumb()->add(array(
     )
 ));
 ```
+
 To render breadcrumbs.
-##### PHP
-```
+
+```php
 echo $theme->breadcrumb()->render();
 
 // or
 
 echo Theme::breadcrumb()->render();
 ```
+
 You can set up breadcrumbs template anywhere you want by using a blade template.
-##### PHP
-```
+
+```php
 $theme->breadcrumb()->setTemplate('
     <ul class="breadcrumb">
     @foreach ($crumbs as $i => $crumb)
@@ -467,41 +510,57 @@ $theme->breadcrumb()->setTemplate('
 ');
 ```
 
+<!-- 
+<a name="breadcrumb"></a>
 #### Widgets Design Structure
 Theme has many useful features called "widget" that can be anything.
+
+<a name="breadcrumb"></a>
 ####  Creating a widget
 You can create a widget class using artisan command.
 
 **Creating as a Global** 
 ##### Command
 ```
+
 php artisan theme:widget demo --global --type=blade
 ```
+
 
 > Widget tpl is located in "resources/views/widgets/{widget-tpl}.{extension}"
 
 **Creating a specific theme name.** 
 ##### Command
 ```
+
 php artisan theme:widget demo default --type=blade
 ```
+
 Widget tpl is located in "public/themes/[theme]/widgets/{widget-tpl}.{extension}"
 
 The file name can be demo.php, demo.blade.php or demo.twig.php
 
 Now you will see a widget class at /app/Widgets/WidgetDemo.php
+ -->
+<a name="breadcrumb"></a>
+
 ##### HTML
 ```
+
 <h1>User Id: {{ $label }}</h1>
 ```
+<a name="using-theme-global"></a>
+
 #### Calling your widget in layout or view
-##### PHP
-```
+
+```php
 echo Theme::widget('demo', array('label' => 'Demo Widget'))->render();
 ```
+
+<a name="using-theme-global"></a>
 #### Using theme global
-##### PHP
-```
+
+```php
 use Litepie\Theme\Contracts\Theme;
 use App\Http\Controllers\Controller;
 
@@ -527,9 +586,10 @@ class BaseController extends Controller {
 
 }
 ```
+
 To override theme or layout.
-##### PHP
-```
+
+```php
 public function getIndex()
 {
     $this->theme->uses('newone');
@@ -539,3 +599,4 @@ public function getIndex()
     $this->theme->of('somewhere.index')->render();
 }
 ```
+
