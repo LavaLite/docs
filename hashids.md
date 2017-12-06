@@ -16,8 +16,8 @@ This facade will dynamically pass static method calls to the `hashids` object in
 
 ### Examples
 Here you can see an example of just how simple this package is to use. 
-##### PHP
-```
+
+```php
 // You can alias this in config/app.php.
 use Litepie\Support\Facades\Hashids;
 
@@ -28,8 +28,8 @@ Hashids::decode('doyouthinkthatsairyourebreathingnow');
 // This example is simple and there are far more methods available.
 ```
 ### Helpers
-##### PHP
-```
+
+```php
 
 
 hashids_encode(4815162342);
@@ -40,8 +40,8 @@ hashids_decode('doyouthinkthatsairyourebreathingnow');
 ```
 ### Traits
 You can use hashids traits to decode id (primary key) of the model.
-##### PHP
-```
+
+```php
 <?php
 
 use Litepie\Database\Model;
@@ -56,8 +56,8 @@ class MyModel extends Model
 }
 ```
 This trait overrides two model methods.
-##### PHP
-```
+
+```php
 $model->getRouteKey()
 $model->findorFail($hashed_id)
 ```
