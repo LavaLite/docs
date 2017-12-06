@@ -328,9 +328,8 @@ Theme::asset()->serve('backbone');
 ```
 
 Then you can get output.
-<a name="html"></a>
-##### HTML
-```
+
+```html
 
 ...
 <head>
@@ -544,8 +543,7 @@ Now you will see a widget class at /app/Widgets/WidgetDemo.php
  -->
 <a name="breadcrumb"></a>
 
-##### HTML
-```
+```html
 
 <h1>User Id: {{ $label }}</h1>
 ```

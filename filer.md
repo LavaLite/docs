@@ -1,5 +1,5 @@
 
-Filer is used for managing files on the website / application. 
+Package for handling file upload and display.
 
     use Litepie\Database\Model;
     use Litepie\Filer\Traits\Filer;

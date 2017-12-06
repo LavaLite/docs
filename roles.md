@@ -1,4 +1,4 @@
-Powerful package for handling roles and permissions.
+Package for handling roles and permissions.
 
 - [Installation](#installation)
     - [Composer](#composer)

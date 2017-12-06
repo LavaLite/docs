@@ -1,4 +1,5 @@
-###### Manages form controls.
+Package for generating forms and form controls.
+
 The forms are aims to rethink elegantly creation of forms by transforming each field into its own model, with its own methods and attributes. This means that you can do this sort of stuff 
 
 	Form::horizontal_open()
