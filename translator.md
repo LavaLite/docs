@@ -1,3 +1,5 @@
+# Translator
+
 #### USAGE
 Laravel Localization uses the URL given for the request.  In order to achieve this purpose, a route group should be added into the `routes.php` file. It will filter all pages that must be localized.
 

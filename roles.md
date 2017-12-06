@@ -1,3 +1,5 @@
+# Roles
+
 Package for handling roles and permissions.
 
 - [Installation](#installation)

@@ -1,4 +1,5 @@
-### User
+# User
+
 ##### Manages Access Control List and Users
 #### USER MIDDLEWARES
 If you have to control the access User provides middlewares to protect your routes. If you have to control the access through the Laravel routes, the User has some built-in middlewares for the trivial tasks. 
@@ -195,7 +196,7 @@ The Laravel's Blade extension for using User.
 	    shows the data for those who doesn't have the admin permission
 	@endis
 
-	#### USING THE FACADE
+#### USING THE FACADE
 With the User's Facade you can access the API and use it at any part of your application.
 
 	User::hasPermission($permission);

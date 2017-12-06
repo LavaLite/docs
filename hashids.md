@@ -1,3 +1,5 @@
+# Hashids
+
 ###### Laravel 5 wrapper for the [Hashids](http://hashids.org)
 [Hashids](http://hashids.org) is a small open-source library that generates short, unique, non-sequential ids from numbers.
 

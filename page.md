@@ -1,3 +1,5 @@
+# Page
+
 #### Manage pages for the CMS
 This is a Laravel 4 package that provides multilingual page interface for lavalite framework.
 
