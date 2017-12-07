@@ -684,7 +684,7 @@ composer require lavalite/laravel-validator
 In the example below, we define some rules for both creation and edition.
 
 ```php
-use \Prettus\Validator\LaravelValidator;
+use \Litepie\Validator\LaravelValidator;
 
 class PostValidator extends LaravelValidator {
 
@@ -699,8 +699,8 @@ class PostValidator extends LaravelValidator {
 To define specific rules, proceed as shown below:
 
 ```php
-use \Prettus\Validator\Contracts\ValidatorInterface;
-use \Prettus\Validator\LaravelValidator;
+use \Litepie\Validator\Contracts\ValidatorInterface;
+use \Litepie\Validator\LaravelValidator;
 
 class PostValidator extends LaravelValidator {
 
@@ -751,7 +751,7 @@ Alternatively, instead of using a class to define its validation rules, the user
 ```php
 use Litepie\Repository\Eloquent\BaseRepository;
 use Litepie\Repository\Criteria\RequestCriteria;
-use Prettus\Validator\Contracts\ValidatorInterface;
+use Litepie\Validator\Contracts\ValidatorInterface;
 
 class PostRepository extends BaseRepository {
 
@@ -781,7 +781,7 @@ class PostRepository extends BaseRepository {
 
 }
 ```
-Validation is now ready. In case of a failure an exception will be given of the type: ***Prettus\Validator\Exceptions\ValidatorException***
+Validation is now ready. In case of a failure an exception will be given of the type: ***Litepie\Validator\Exceptions\ValidatorException***
 #### Presenters
 Presenters function as a wrapper within the system and also a renderer for objects
 #### Fractal Presenter
