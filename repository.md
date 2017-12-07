@@ -468,7 +468,7 @@ protected $fieldSearchable = [
 The user can Request all data without filter by request
 
 ```
-http://prettus.local/users
+http://lavalite.local/users
 ```
 
 ```php
@@ -499,30 +499,30 @@ http://prettus.local/users
 Conducting research in the repository
 
 ```
-http://prettus.local/users?search=John%20Doe
+http://lavalite.local/users?search=John%20Doe
 ```
 ***Or*** 
 
 ```
-http://prettus.local/users?search=John&searchFields=name:like
-```
-
-***Or*** 
-
-```
-http://prettus.local/users?search=john@gmail.com&searchFields=email:=
+http://lavalite.local/users?search=John&searchFields=name:like
 ```
 
 ***Or*** 
 
 ```
-http://prettus.local/users?search=name:John Doe;email:john@gmail.com
+http://lavalite.local/users?search=john@gmail.com&searchFields=email:=
 ```
 
 ***Or*** 
 
 ```
-http://prettus.local/users
+http://lavalite.local/users?search=name:John Doe;email:john@gmail.com
+```
+
+***Or*** 
+
+```
+http://lavalite.local/users
 ```
 
 ```
@@ -543,7 +543,7 @@ http://prettus.local/users
 ```
 Filtering fields
 ```
-http://prettus.local/users?filter=id;name
+http://lavalite.local/users?filter=id;name
 ```
 
 ```php
@@ -564,7 +564,7 @@ http://prettus.local/users?filter=id;name
 ```
 Sorting the results
 ```
-http://prettus.local/users?filter=id;name&orderBy=id&sortedBy=desc
+http://lavalite.local/users?filter=id;name&orderBy=id&sortedBy=desc
 ```
 
 ```php
@@ -585,7 +585,7 @@ http://prettus.local/users?filter=id;name&orderBy=id&sortedBy=desc
 ```
 Add relationship
 ```
-http://prettus.local/users?with=groups
+http://lavalite.local/users?with=groups
 ```
 #### OVERWRITE PARAMS NAME
 The user can change the name of the parameters in the configuration file **config/repository.php**
@@ -675,9 +675,9 @@ class PostRepository extends BaseRepository implements CacheableInterface {
 ```
 The cacheable methods are : all, paginate, find, findByField, findWhere, getByCriteria
 #### VALIDATORS
-Requires **prettus/laravel-validator**. 
+Requires **lavalite/laravel-validator**. 
 ```
-composer require prettus/laravel-validator
+composer require lavalite/laravel-validator
 ```
 #### USING A VALIDATOR CLASS
 #### Create a Validator
