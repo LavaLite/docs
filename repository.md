@@ -4,13 +4,13 @@ Litepie Repository is used to abstract the data layer. This allows the user to c
 
 #### Repository Interface
 The Link to the same can be found under
-##### PHP
-```
+
+```php
 Litepie\Repository\Contracts\RepositoryInterface
 ```
 The following methods are present under the Repository Interface
-##### PHP
-```
+
+```php
 all($columns = array('*'))
 first($columns = array('*'))
 paginate($limit = null, $columns = ['*'])
@@ -32,13 +32,13 @@ skipPresenter($status = true);
 ```
 #### Repository Criteria Interface
 The Link to the same can be found under
-##### PHP
-```
+
+```php
 Litepie\Repository\Contracts\RepositoryCriteriaInterface
 ```
 The following methods are present under the Repository Criteria Interface
-##### PHP
-```
+
+```php
 pushCriteria(CriteriaInterface $criteria)
 getCriteria()
 getByCriteria(CriteriaInterface $criteria)
@@ -48,13 +48,13 @@ getFieldsSearchable()
 #### Cacheable Interface
 The Link to the same can be found under
 
-##### PHP
-```
+
+```php
 Litepie\Repository\Contracts\CacheableInterface
 ```
 The following methods are present under the Cacheable Interface
-##### PHP
-```
+
+```php
 setCacheRepository(CacheRepository $repository)
 getCacheRepository()
 getCacheKey($method, $args = null)
@@ -63,55 +63,55 @@ skipCache($status = true)
 ```
 #### Presenter Interface
 The Link to the same can be found under
-##### PHP
-```
+
+```php
 Litepie\Repository\Contracts\PresenterInterface
 ```
 The following methods are present under the Cacheable Interface
-##### PHP
-```
+
+```php
 present($data);
 ```
 #### Presentable
 The Link to the same can be found under
-##### PHP
-```
+
+```php
 Litepie\Repository\Contracts\Presentable
 ```
 The following methods are present under Presentable
-##### PHP
-```
+
+```php
 setPresenter(PresenterInterface $presenter);
 presenter();
 ```
 #### Criteria Interface
 The Link to the same can be found under
-##### PHP
-```
+
+```php
 Litepie\Repository\Contracts\CriteriaInterface
 ```
 The following methods under Criteria interface are as follows
-##### PHP
-```
+
+```php
 apply($model, RepositoryInterface $repository);
 ```
 #### Transformable
 The Link to the same can be found under
-##### PHP
-```
+
+```php
 Litepie\Repository\Contracts\Transformable
 ```
 The following methods under Tranformable are as follows
-##### PHP
-```
+
+```php
 transform();
 ```
 #### USAGE
 
 #### CREATE A MODEL
 The user can use the code to create a model normally, however it is important to ensure that attributes are defined from the input data.
-##### PHP
-```
+
+```php
 namespace App;
 
 class Post extends Eloquent { // or Ardent, Or any other Model Class
@@ -127,8 +127,8 @@ class Post extends Eloquent { // or Ardent, Or any other Model Class
 ```
 #### CREATE A REPOSITORY
 The user can develop a Repository for your Database by extending the Base repository.
-##### PHP
-```
+
+```php
 namespace App;
 
 use Litepie\Repository\Eloquent\BaseRepository;
@@ -150,8 +150,8 @@ class PostRepository extends BaseRepository {
 The Generators have enable users to create Repositories with ease.
 #### Config
 The user must first configure the respective storage location of the repository files. This is by default done through the "app" folder and the namespace "App".
-##### PHP
-```
+
+```php
 ...
     'generator'=>[
         'basePath'=>app_path(),
@@ -166,8 +166,8 @@ The user must first configure the respective storage location of the repository 
     ]
 ```
 The user may want to save the root of your project folder outside the location of the app and add another namespace, For Eg.
-##### PHP
-```
+
+```php
 ...
      'generator'=>[
         'basePath'      => base_path('src/Lorem'),
@@ -175,8 +175,8 @@ The user may want to save the root of your project folder outside the location o
     ]
 ```
 Additionally, the user may wish to customize where your generated classes gets saved. This can be accomplished by editing the **paths **node to your liking. For Eg.
-##### PHP
-```
+
+```php
  'generator'=>[
         'basePath'=>app_path(),
         'rootNamespace'=>'App\\',
@@ -191,8 +191,8 @@ Additionally, the user may wish to customize where your generated classes gets s
 ```
 #### COMMANDS
 In order to generate all the functions that the user needs for the respective Model, this command can be run:
-##### PHP
-```
+
+```php
 php artisan make:entity Post
 ```
 This will create the Model, the Repository, the Presenter and the Transformer classes. 
@@ -200,38 +200,38 @@ This will create the Model, the Repository, the Presenter and the Transformer cl
 The user can also pass the options from the **repository **command, since this command is just a wrapper.
 
 To generate a repository for your Post model, the following command can be utilized
-##### PHP
-```
+
+```php
 php artisan make:repository Post
 ```
 If you would like to implement a namespace to your blog, you could utilize the following command.
-##### PHP
-```
+
+```php
 php artisan make:repository "Blog\Post"
 ```
 There are certain Added fields that are fillable by the user.
-##### PHP
-```
+
+```php
 php artisan make:repository "Blog\Post" --fillable="title,content"
 ```
 When the user is running command, he/she will be creating the "Entities" folder and "Repositories" inside the folder that you set as the default.
 
 Done, done that just now you do bind its interface for your real repository, for example in your own Repositories Service Provider.
 
-##### PHP
-```
+
+```php
 App::bind('{YOUR_NAMESPACE}Repositories\PostRepository', '{YOUR_NAMESPACE}Repositories\PostRepositoryEloquent');
 ```
 And use
-##### PHP
-```
+
+```php
 public function __construct({YOUR_NAMESPACE}Repositories\PostRepository $repository){
     $this->repository = $repository;
 }
 ```
 #### USE METHOD
-##### PHP
-```
+
+```php
 namespace App\Http\Controllers;
 
 use App\PostRepository;
@@ -251,43 +251,43 @@ class PostsController extends BaseController {
 }
 ```
 Find all results in Repository
-##### PHP
-```
+
+```php
 $posts = $this->repository->all();
 ```
 Find all results in Repository with pagination
-##### PHP
-```
+
+```php
 $posts = $this->repository->paginate($limit = null, $columns = ['*']);
 ```
 Find by result by id
-##### PHP
-```
+
+```php
 $post = $this->repository->find($id);
 ```
 Hiding attributes of the model
-##### PHP
-```
+
+```php
 $post = $this->repository->hidden(['country_id'])->find($id);
 ```
 Showing only specific attributes of the model
-##### PHP
-```
+
+```php
 $post = $this->repository->visible(['id', 'state_id'])->find($id);
 ```
 Loading the Model relationships
-##### PHP
-```
+
+```php
 $post = $this->repository->with(['state'])->find($id);
 ```
 Find by result by field name
-##### PHP
-```
+
+```php
 $posts = $this->repository->findByField('country_id','15');
 ```
 Find by result by multiple fields
-##### PHP
-```
+
+```php
 $posts = $this->repository->findWhere([
     //Default Condition =
     'state_id'=>'10',
@@ -297,41 +297,41 @@ $posts = $this->repository->findWhere([
 ]);
 ```
 Find by result by multiple values in one field
-##### PHP
-```
+
+```php
 $posts = $this->repository->findWhereIn('id', [1,2,3,4,5]);
 ```
 Find by result by excluding multiple values in one field
-##### PHP
-```
+
+```php
 $posts = $this->repository->findWhereNotIn('id', [6,7,8,9,10]);
 ```
 Find all using custom scope
-##### PHP
-```
+
+```php
 $posts = $this->repository->scopeQuery(function($query){
     return $query->orderBy('sort_order','asc');
 })->all();
 ```
 Create new entry in Repository
-##### PHP
-```
+
+```php
 $post = $this->repository->create( Input::all() );
 ```
 Update entry in Repository
-##### PHP
-```
+
+```php
 $post = $this->repository->update( Input::all(), $id );
 ```
 Delete entry in Repository
-##### PHP
-```
+
+```php
 $this->repository->delete($id)
 ```
 #### CREATE A CRITERIA
 The Criteria is a way to change the repository of the query by applying specific conditions according to the user's needs. The user can add multiple Criteria into the repository.
-##### PHP
-```
+
+```php
 use Litepie\Repository\Contracts\RepositoryInterface;
 use Litepie\Repository\Contracts\CriteriaInterface;
 
@@ -374,13 +374,13 @@ class PostsController extends BaseController {
 }
 ```
 The user could obtain the results from Criteria utilizing the following code.
-##### PHP
-```
+
+```php
 $posts = $this->repository->getByCriteria(new MyCriteria());
 ```
 The user can set the default Criteria in Repository
-##### PHP
-```
+
+```php
 use Litepie\Repository\Eloquent\BaseRepository;
 
 class PostRepository extends BaseRepository {
@@ -398,8 +398,8 @@ class PostRepository extends BaseRepository {
 ```
 #### SKIP CRITERIA
 The user can utilize the **skipCriteria** before any chaining method.
-##### PHP
-```
+
+```php
 $posts = $this->repository->skipCriteria()->all();
 ```
 #### USING THE REQUESTCRITERIA
@@ -409,8 +409,8 @@ The user can perform a dynamic search, filter the data and customize the queries
 
 To use the Criteria in your repository, the user can add a new criteria in the boot method of your repository, or directly use in your controller, in order to filter out only a few requests.
 #### ENABLING YOUR REPOSITORY
-##### PHP
-```
+
+```php
 use Litepie\Repository\Eloquent\BaseRepository;
 use Litepie\Repository\Criteria\RequestCriteria;
 
@@ -438,16 +438,16 @@ class PostRepository extends BaseRepository {
 The user would need to define which fields from the model can be searchable.
 
 In the repository the fields that are searchable should be set to $fieldSearchable.
-##### PHP
-```
+
+```php
 protected $fieldSearchable = [
   'name',
   'email'
 ];
 ```
 You can set the type of condition which will be used to perform the query, the default condition is **"="** 
-##### PHP
-```
+
+```php
 protected $fieldSearchable = [
   'name'=>'like',
   'email', // Default Condition "="
@@ -455,8 +455,8 @@ protected $fieldSearchable = [
 ];
 ```
 #### ENABLING IN CONTROLLER
-##### PHP
-```
+
+```php
  public function index()
     {
         $this->repository->pushCriteria(app('Litepie\Repository\Criteria\RequestCriteria'));
@@ -470,8 +470,8 @@ The user can Request all data without filter by request
 ```
 http://prettus.local/users
 ```
-##### PHP
-```
+
+```php
 [
     {
         "id": 1,
@@ -529,8 +529,8 @@ http://prettus.local/users
 ?search=name:John;email:john@gmail.com&searchFields=name:like;email:=
 ```
 
-##### PHP
-```
+
+```php
 [
     {
         "id": 1,
@@ -545,8 +545,8 @@ Filtering fields
 ```
 http://prettus.local/users?filter=id;name
 ```
-##### PHP
-```
+
+```php
 [
     {
         "id": 1,
@@ -566,8 +566,8 @@ Sorting the results
 ```
 http://prettus.local/users?filter=id;name&orderBy=id&sortedBy=desc
 ```
-##### PHP
-```
+
+```php
 [
     {
         "id": 3,
@@ -593,8 +593,8 @@ The user can change the name of the parameters in the configuration file **confi
 The user can further add a layer of cache easily to your repository
 #### Cache Usage
 Implements the interface CacheableInterface and use CacheableRepository Trait.
-##### PHP
-```
+
+```php
 use Litepie\Repository\Eloquent\BaseRepository;
 use Litepie\Repository\Contracts\CacheableInterface;
 use Litepie\Repository\Traits\CacheableRepository;
@@ -611,8 +611,8 @@ Here the repository will be cached , and the repository cache is cleared wheneve
 You can change the cache settings in the file config/repository.php and also directly on your repository.
 
 ***config/repository.php***
-##### PHP
-```
+
+```php
 'cache'=>[
     //Enable or disable cache repositories
     'enabled'   => true,
@@ -653,8 +653,8 @@ You can change the cache settings in the file config/repository.php and also dir
 ],
 ```
 Further, it is possible to override these settings directly in the repository.
-##### PHP
-```
+
+```php
 use Litepie\Repository\Eloquent\BaseRepository;
 use Litepie\Repository\Contracts\CacheableInterface;
 use Litepie\Repository\Traits\CacheableRepository;
@@ -682,8 +682,8 @@ composer require prettus/laravel-validator
 #### USING A VALIDATOR CLASS
 #### Create a Validator
 In the example below, we define some rules for both creation and edition.
-##### PHP
-```
+
+```php
 use \Prettus\Validator\LaravelValidator;
 
 class PostValidator extends LaravelValidator {
@@ -697,8 +697,8 @@ class PostValidator extends LaravelValidator {
 }
 ```
 To define specific rules, proceed as shown below:
-##### PHP
-```
+
+```php
 use \Prettus\Validator\Contracts\ValidatorInterface;
 use \Prettus\Validator\LaravelValidator;
 
@@ -718,8 +718,8 @@ class PostValidator extends LaravelValidator {
 }
 ```
 #### Enabling Validator in the Repository
-##### PHP
-```
+
+```php
 use Litepie\Repository\Eloquent\BaseRepository;
 use Litepie\Repository\Criteria\RequestCriteria;
 
@@ -747,8 +747,8 @@ class PostRepository extends BaseRepository {
 ```
 #### Defining rules in the repository
 Alternatively, instead of using a class to define its validation rules, the user can set your rules directly into the rules repository property, it will have the same effect as a Validation class.
-##### PHP
-```
+
+```php
 use Litepie\Repository\Eloquent\BaseRepository;
 use Litepie\Repository\Criteria\RequestCriteria;
 use Prettus\Validator\Contracts\ValidatorInterface;
@@ -796,14 +796,15 @@ There are two ways to implement the Presenter,
 2. The second way is to make your model implement the Transformable interface, and use the default Presenter ModelFractarPresenter, this will have the same effect. 
 
 #### Transformer Class
-You can **Create a transformer class **using the following command.
-##### PHP
-```
+You can **Create a transformer class ** using the following command.
+
+
+```php
 php artisan make:transformer Post
 ```
 The code would generate the following class
-##### PHP
-```
+
+```php
 use League\Fractal\TransformerAbstract;
 
 class PostTransformer extends TransformerAbstract
@@ -820,8 +821,8 @@ class PostTransformer extends TransformerAbstract
 ```
 #### Create a Presenter
 Create a Presenter using the command
-##### PHP
-```
+
+```php
 php artisan make:presenter Post
 ```
 The command will further prompt you for creating a Transformer too if you haven't already.
@@ -829,8 +830,8 @@ The command will further prompt you for creating a Transformer too if you haven'
 
 Create a Presenter
 
-##### PHP
-```
+
+```php
 use Litepie\Repository\Presenter\FractalPresenter;
 
 class PostPresenter extends FractalPresenter {
@@ -847,8 +848,8 @@ class PostPresenter extends FractalPresenter {
 }
 ```
 Enabling in your Repository
-##### PHP
-```
+
+```php
 use Litepie\Repository\Eloquent\BaseRepository;
 
 class PostRepository extends BaseRepository {
@@ -862,8 +863,8 @@ class PostRepository extends BaseRepository {
 }
 ```
 Or enable it in your controller with the following code
-##### PHP
-```
+
+```php
 $this->repository->setPresenter("App\\Presenter\\PostPresenter");
 ```
 **Using the presenter after from the Model** 
@@ -871,17 +872,17 @@ $this->repository->setPresenter("App\\Presenter\\PostPresenter");
 If you recorded a presenter and sometime used the **skipPresenter()** method or simply you do not want your result is not changed automatically by the presenter. You can implement Presentable interface on your model so you will be able to present your model at any time. 
 
 In your model, implement the interface
-##### PHP
-```
+
+```php
 Litepie\Repository\Contracts\Presentable
 ```
 And
-##### PHP
-```
+
+```php
 Litepie\Repository\Traits\PresentableTrait
 ```
-##### PHP
-```
+
+```php
 namespace App;
 
 use Litepie\Repository\Contracts\Presentable;
@@ -901,8 +902,8 @@ class Post extends Eloquent implements Presentable {
 }
 ```
 Once this is done, the user can submit your Model individually, See an example:
-##### PHP
-```
+
+```php
 $repository = app('App\PostRepository');
 $repository->setPresenter("Litepie\\Repository\\Presenter\\ModelFractalPresenter");
 
@@ -920,8 +921,8 @@ print_r( $post ); //It produces an output as a Model object
 print_r( $post->presenter() ); //It produces an output as array
 ```
 You can skip the presenter at every visit and use it on demand directly into the model, for it set the ***$skipPresenter*** attribute to true in your repository:
-##### PHP
-```
+
+```php
 use Litepie\Repository\Eloquent\BaseRepository;
 
 class PostRepository extends BaseRepository {
@@ -939,8 +940,8 @@ class PostRepository extends BaseRepository {
 ```
 #### Model Class
 **Implement Interface**
-##### PHP
-```
+
+```php
 namespace App;
 
 use Litepie\Repository\Contracts\Transformable;
@@ -961,13 +962,13 @@ class Post extends Eloquent implements Transformable {
 }
 ```
 **Enabling in your Repository**
-##### PHP
-```
+
+```php
 Litepie\Repository\Presenter\ModelFractalPresenter
 ```
 This Presenter is available for all Models which iplements Transformable
-##### PHP
-```
+
+```php
 use Litepie\Repository\Eloquent\BaseRepository;
 
 class PostRepository extends BaseRepository {
@@ -981,19 +982,19 @@ class PostRepository extends BaseRepository {
 }
 ```
 You can also enable it in your controller with
-##### PHP
-```
+
+```php
 $this->repository->setPresenter("Litepie\\Repository\\Presenter\\ModelFractalPresenter");
 ```
 #### Skip Presenter defined in the repository
 Use ***skipPresenter ***before any other chaining method
-##### PHP
-```
+
+```php
 $posts = $this->repository->skipPresenter()->all();
 ```
 Or
-##### PHP
-```
+
+```php
 $this->repository->skipPresenter();
 
 $posts = $this->repository->all();
