@@ -14,25 +14,33 @@
 
 ### Server Requirements
 
-The Laravel framework has a few system requirements. 
+The Lavalite framework has a few system requirements. 
 
 <div class="content-list" markdown="1">
-- PHP >= 5.5.9
+- PHP >= 7.0
 - OpenSSL PHP Extension
 - PDO PHP Extension
 - Mbstring PHP Extension
 - Tokenizer PHP Extension
+- Fileinfo PHP Extension
+- GD Library
+- Imagick PHP Extension
 </div>
 
 <a name="install-laravel"></a>
-### Installing Laravel
+### Installing Lavalite
 
-Laravel utilizes [Composer](http://getcomposer.org) to manage its dependencies. So, before using Laravel, make sure you have Composer installed on your machine.
-#### Via Composer Create-Project
+Lavalite utilizes [Composer](http://getcomposer.org) to manage its dependencies. So, before using Lavalite, make sure you have Composer installed on your machine.
+#### Composer Create-Project
 
-You may also install Laravel by issuing the Composer `create-project` command in your terminal:
+You may also install Lavalite by issuing the Composer `create-project` command in your terminal:
 
-    composer create-project laravel/laravel --prefer-dist
+    composer create-project LavaLite/cms --prefer-dist website
+
+### Installation
+After creating the project move to the project root folder and run the command to set up database and configuration files. 
+
+    php artisan lavalite:install
 
 <a name="configuration"></a>
 ## Configuration
@@ -40,36 +48,36 @@ You may also install Laravel by issuing the Composer `create-project` command in
 <a name="basic-configuration"></a>
 ### Basic Configuration
 
-All of the configuration files for the Laravel framework are stored in the `config` directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.
+All of the configuration files for the Lavalite framework are stored in the `config` directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.
 
 #### Directory Permissions
 
-After installing Laravel, you may need to configure some permissions. Directories within the `storage` and the `bootstrap/cache` directories should be writable by your web server. If you are using the [Homestead](/docs/{{version}}/homestead) virtual machine, these permissions should already be set.
+After installing Lavalite, you may need to configure some permissions. Directories within the `storage` and the `bootstrap/cache` directories should be writable by your web server. If you are using the [Homestead](/docs/{{version}}/homestead) virtual machine, these permissions should already be set.
 
 #### Application Key
 
-The next thing you should do after installing Laravel is set your application key to a random string. If you installed Laravel via Composer or the Laravel installer, this key has already been set for you by the `key:generate` command. Typically, this string should be 32 characters long. The key can be set in the `.env` environment file. If you have not renamed the `.env.example` file to `.env`, you should do that now. **If the application key is not set, your user sessions and other encrypted data will not be secure!**
+The next thing you should do after installing Lavalite is set your application key to a random string. If you installed Lavalite via Composer or the Lavalite installer, this key has already been set for you by the `key:generate` command. Typically, this string should be 32 characters long. The key can be set in the `.env` environment file. If you have not renamed the `.env.example` file to `.env`, you should do that now. **If the application key is not set, your user sessions and other encrypted data will not be secure!**
 
 #### Additional Configuration
 
-Laravel needs almost no other configuration out of the box. You are free to get started developing! However, you may wish to review the `config/app.php` file and its documentation. It contains several options such as `timezone` and `locale` that you may wish to change according to your application.
+Lavalite needs almost no other configuration out of the box. You are free to get started developing! However, you may wish to review the `config/app.php` file and its documentation. It contains several options such as `timezone` and `locale` that you may wish to change according to your application.
 
-You may also want to configure a few additional components of Laravel, such as:
+You may also want to configure a few additional components of Lavalite, such as:
 
 - [Cache](/docs/{{version}}/cache#configuration)
 - [Database](/docs/{{version}}/database#configuration)
 - [Session](/docs/{{version}}/session#configuration)
 
-Once Laravel is installed, you should also [configure your local environment](/docs/{{version}}/installation#environment-configuration).
+Once Lavalite is installed, you should also [configure your local environment](/docs/{{version}}/installation#environment-configuration).
 
 <a name="pretty-urls"></a>
 #### Pretty URLs
 
 **Apache**
 
-The framework ships with a `public/.htaccess` file that is used to allow URLs without `index.php`. If you use Apache to serve your Laravel application, be sure to enable the `mod_rewrite` module.
+The framework ships with a `public/.htaccess` file that is used to allow URLs without `index.php`. If you use Apache to serve your Lavalite application, be sure to enable the `mod_rewrite` module.
 
-If the `.htaccess` file that ships with Laravel does not work with your Apache installation, try this one:
+If the `.htaccess` file that ships with Lavalite does not work with your Apache installation, try this one:
 
     Options +FollowSymLinks
     RewriteEngine On
@@ -93,9 +101,9 @@ Of course, when using [Homestead](/docs/{{version}}/homestead), pretty URLs will
 
 It is often helpful to have different configuration values based on the environment the application is running in. For example, you may wish to use a different cache driver locally than you do on your production server. It's easy using environment based configuration.
 
-To make this a cinch, Laravel utilizes the [DotEnv](https://github.com/vlucas/phpdotenv) PHP library by Vance Lucas. In a fresh Laravel installation, the root directory of your application will contain a `.env.example` file. If you install Laravel via Composer, this file will automatically be renamed to `.env`. Otherwise, you should rename the file manually.
+To make this a cinch, Lavalite utilizes the [DotEnv](https://github.com/vlucas/phpdotenv) PHP library by Vance Lucas. In a fresh Lavalite installation, the root directory of your application will contain a `.env.example` file. If you install Lavalite via Composer, this file will automatically be renamed to `.env`. Otherwise, you should rename the file manually.
 
-All of the variables listed in this file will be loaded into the `$_ENV` PHP super-global when your application receives a request. You may use the `env` helper to retrieve values from these variables. In fact, if you review the Laravel configuration files, you will notice several of the options already using this helper!
+All of the variables listed in this file will be loaded into the `$_ENV` PHP super-global when your application receives a request. You may use the `env` helper to retrieve values from these variables. In fact, if you review the Lavalite configuration files, you will notice several of the options already using this helper!
 
 Feel free to modify your environment variables as needed for your own local server, as well as your production environment. However, your `.env` file should not be committed to your application's source control, since each developer / server using your application could require a different environment configuration.
 
@@ -142,7 +150,7 @@ To set configuration values at runtime, pass an array to the `config` helper:
 <a name="naming-your-application"></a>
 ### Naming Your Application
 
-After installing Laravel, you may wish to "name" your application. By default, the `app` directory is namespaced under `App`, and autoloaded by Composer using the [PSR-4 autoloading standard](http://www.php-fig.org/psr/psr-4/). However, you may change the namespace to match the name of your application, which you can easily do via the `app:name` Artisan command.
+After installing Lavalite, you may wish to "name" your application. By default, the `app` directory is namespaced under `App`, and autoloaded by Composer using the [PSR-4 autoloading standard](http://www.php-fig.org/psr/psr-4/). However, you may change the namespace to match the name of your application, which you can easily do via the `app:name` Artisan command.
 
 For example, if your application is named "Horsefly", you could run the following command from the root of your installation:
 
