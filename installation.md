@@ -37,7 +37,7 @@ You may also install Lavalite by issuing the Composer `create-project` command i
 
     composer create-project LavaLite/cms --prefer-dist website
 
-### Installation
+#### Installation
 After creating the project move to the project root folder and run the command to set up database and configuration files. 
 
     php artisan lavalite:install

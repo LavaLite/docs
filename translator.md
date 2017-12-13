@@ -3,6 +3,7 @@
 #### USAGE
 Laravel Localization uses the URL given for the request.  In order to achieve this purpose, a route group should be added into the `routes.php` file. It will filter all pages that must be localized.
 
+```php
 	// app/Http/routes.php
 	Route::group(['prefix' => trans_setlocale()], function()
 	{
@@ -16,6 +17,7 @@ Laravel Localization uses the URL given for the request.  In order to achieve th
 				return View::make('test');
 		});
 	});
+```
 
 #OTHER PAGES THAT SHOULD NOT BE LOCALIZED 
 
@@ -32,6 +34,7 @@ Moreover, this package includes a middleware object to redirect all "non-localiz
 
 You have to register the middleware in the `app/Http/Kernel.php` file like this:
 
+```php
 	namespace App\Http;
 
 	use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -71,6 +74,7 @@ You have to register the middleware in the `app/Http/Kernel.php` file like this:
 				return View::make('test');
 		});
 	});
+```
 
 	/** OTHER PAGES THAT SHOULD NOT BE LOCALIZED **/
 
@@ -85,6 +89,7 @@ This package comes with some useful functions, like:
 
 **Get URL for an specific locale**
 
+```php
 	 /**
 	 * Returns an URL adapted to $locale
 	 *
@@ -100,6 +105,7 @@ This package comes with some useful functions, like:
 
 	//Should be called in a view like this:
 	{{ Trans::getLocalizedURL(optional string $locale, optional string $url, optional array $attributes) }}
+```
 
 Helper function is available for easy access
 
@@ -110,6 +116,7 @@ It returns a URL localized to the desired locale.
 
 **Get Clean routes**
 
+```php
 	 /**
 	 * It returns an URL without locale (if it has it)
 	 * Convenience function wrapping getLocalizedURL(false)
@@ -122,11 +129,13 @@ It returns a URL localized to the desired locale.
 
 	//Should be called in a view like this:
 	{{ Trans::getNonLocalizedURL(optional string $url) }}
+```
 
 It returns a URL clean of any localization.
 
 **Get URL for an specific translation key** 
 
+```php
 	/**
 	 * Returns an URL adapted to the route name and the locale given
 	 *
@@ -142,12 +151,14 @@ It returns a URL clean of any localization.
 
 	//Should be called in a view like this:
 	{{ Trans::getURLFromRouteNameTranslated(string $locale, optional array $transKeyNames, optional array $attributes) }}
+```
 
 It returns a route, localized to the desired locale using the locale passed. If the translation key does not exist in the locale given, this function will return false.
 
 **Get Supported Locales** 
 
 
+```php
 	 /**
 	 * Return an array of all supported Locales
 	 *
@@ -157,11 +168,13 @@ It returns a route, localized to the desired locale using the locale passed. If 
 
 	//Should be called like this:
 	{{ Trans::getSupportedLocales() }}
+```
 
 This function will return all supported locales and their properties as an array.
 
 **Get Supported Locales Keys** 
 
+```php
 	/**
 	 * Returns supported languages language key
 	 *
@@ -171,12 +184,14 @@ This function will return all supported locales and their properties as an array
 
 	//Should be called like this:
 	{{ Trans::getSupportedLanguagesKeys() }}
+```
 
 This function will return an array with all the keys for the supported locales.
 
 **Set Locale** 
 
 
+```php
 	/**
 	 * Set and return current locale
 	 *
@@ -188,6 +203,7 @@ This function will return an array with all the keys for the supported locales.
 
 	//Should be called in a view like this:
 	{{ trans_setlocale(optional string $locale) }}
+```
 
 This function will change the application's current locale. If the locale is not passed, the locale will be determined via a cookie (if stored previously), the session (if stored previously), browser Accept-Language header or the default application locale (depending on your config file).
 
@@ -196,6 +212,7 @@ The function has to be called in the prefix of any route that should be translat
 **Get Current Locale** 
 
 
+```php
 	/**
 	 * Returns current language
 	 *
@@ -205,11 +222,13 @@ The function has to be called in the prefix of any route that should be translat
 
 	//Should be called in a view like this:
 	{{ Trans::getCurrentLocale() }}
+```
 
 This function will return the key of the current locale.
 
 **Get Current Locale Name** 
 
+```php
 	/**
 	 * Returns current locale name
 	 *
@@ -219,11 +238,13 @@ This function will return the key of the current locale.
 
 	//Should be called in a view like this:
 	{{ Trans::getCurrentLocaleName() }}
+```
 
 This function will return current locale's name as string (English/Spanish/Arabic/ ..etc).
 
 **Get Current Locale Direction** 
 
+```php
 	/**
 	 * Returns current locale direction
 	 *
@@ -233,12 +254,14 @@ This function will return current locale's name as string (English/Spanish/Arabi
 
 	//Should be called in a view like this:
 	{{ Trans::getCurrentLocaleDirection() }}
+```
 
 This function will return current locale's direction as string (ltr/rtl).
 
 **Get Current Locale Script** 
 
 
+```php
 	/**
 	 * Returns current locale script
 	 *
@@ -248,6 +271,7 @@ This function will return current locale's direction as string (ltr/rtl).
 
 	//Should be called in a view like this:
 	{{ Trans::getCurrentLocaleScript() }}
+```
 
 This function will return the ISO 15924 code for the current locale script as a string; "Latn", "Cyrl", "Arab", etc.
 
@@ -255,6 +279,7 @@ This function will return the ISO 15924 code for the current locale script as a 
 
 If you are supporting multiple locales in your project you will probably want to provide the users with a way to change language. Below is a simple example of blade template code you can use to create your own language selector.
 
+```blade
 	<ul class="language_bar_chooser">
 		@foreach(Trans::getSupportedLocales() as $localeCode => $properties)
 			<li>
@@ -264,6 +289,7 @@ If you are supporting multiple locales in your project you will probably want to
 			</li>
 		@endforeach
 	</ul>
+```
 
 **Translated Routes**
 
@@ -271,6 +297,7 @@ You can adapt your URLs depending on the language you want to show them. For exa
 
 As it is a middleware, first you have to register in on your **app/Http/Kernel.php** file like this:
 
+```php
 	namespace App\Http;
 
 	use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -314,13 +341,14 @@ As it is a middleware, first you have to register in on your **app/Http/Kernel.p
 	});
 
 	/** OTHER PAGES THAT SHOULD NOT BE LOCALIZED **/
+```
 
 
 In the routes file you just have to add the `TransRoutes` filter and the `Trans::transRoute` function to every route you want to translate using the translation key.
 
 Then you have to create the translation files and add there every key you want to translate. I suggest to create a routes.php file inside your resources/lang/language_abbreviation folder. For the previous example, I have created two translations files, these two files would look like:
 
-
+```php
 	// resources/lang/en/routes.php
 	return [
 		"about"       =>  "about",
@@ -334,6 +362,7 @@ Then you have to create the translation files and add there every key you want t
 		"view"        =>  "ver/{id}", //we add a route parameter
 		// other translated routes
 	];
+```
 
 Once files are saved, you can access the following without any problem  
 
@@ -348,12 +377,14 @@ The getLanguageBar function would work as desired and it will translate the rout
 
 You can capture the URL parameters during translation if you wish to translate them too. To do so, just create an event listener for the `routes.translation` event like so
 
+```php
 	Event::listen('routes.translation', function($locale, $attributes)
 	{
 			// Do your magic
 
 			return $attributes;
 	});
+```
 	
 Be sure to pass the locale and the attributes as parameters to the closure. You may also use Event Subscribers, see: http://laravel.com/docs/events#event-subscribers
 

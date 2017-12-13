@@ -5,13 +5,17 @@ The model traits can implement functionality. The node in the design can be divi
 ### Simple Tree
 A simple tree model will use the `parent_id` column maintain a parent and child relationship between models. To use the simple tree, apply the `Litepie\Node\Traits\SimpleTree` trait.
 
+```php
 	class Category extends Model
 	{
 	    use \Litepie\Node\Traits\SimpleTree;
 	}
+```
 
-This trait will automatically inject two model relations called `parent` and `children**, it is the equivalent of the following definitions
+This trait will automatically inject two model relations called `parent` and `children**`, it is the equivalent of the following definitions.
 
+
+```php
 	public $belongsTo = [
 	    'parent'    => ['User', 'key' => 'parent_id'],
 	];
@@ -19,6 +23,7 @@ This trait will automatically inject two model relations called `parent` and `ch
 	public $hasMany = [
 	    'children'    => ['User', 'key' => 'parent_id'],
 	];
+```
 
 You can further go onto modifying the respective key name that has been used to identify the parent by defining the **parent_id** variable:
 
@@ -30,10 +35,12 @@ Collections of models that use this trait will return the type of `\Litepie\Node
 ### Nested Tree
 The nested set model is an advanced technique for maintaining hierachies among models using `parent_id`, `nest_left`, `nest_right`, and `nest_depth` columns. To use a nested set model, apply the `\Litepie\Node\Traits\NestedTree` trait. All of the features of the `SimpleTree` trait are inherently available in this model.
 
+```php
 	class Category extends Model
 	{
 	    use \Litepie\Node\Traits\NestedNode;
 	}
+```
 
 ##Creating a root node##
 The default action of the compiler is to create all nodes as root nodes.
@@ -44,17 +51,20 @@ Alternatively, you may find yourself in the need of converting an existing node 
 
 	$node->makeRoot();
 
-You may also nullify it's `parent_id` column which works the same as `makeRoot'.
+You may also nullify it's `parent_id` column which works the same as `makeRoot`.
 
+```php
 	$node->parent_id = null;
 	$node->save();
+```
 
 ##INSERTING NODES##
 You can insert new nodes directly by the relation:
 
+```php
 	$child2 = Category::create(['name' => 'Child 2']);
 	$child2->makeChildOf($root);
-
+```
 ##Deleting Nodes##
 When a particular node is deleted with the delete method, all descendants of the node will also be deleted. Note that the delete model events will not be fired for the child models.
 
@@ -65,10 +75,12 @@ When a particular node is deleted with the delete method, all descendants of the
 You can identify the level at which the node is embedded. The `getLevel` method will return current nesting level, or depth, of a node.
 
 
+```php
 	// 0 when root
 	$node->getLevel()
+```
 
-##Moving nodes around##
+##Moving nodes around
 There are several methods for moving nodes around. You could implement them through the following code
 
 `moveLeft()`: Find the left sibling and move to the left of it. 
