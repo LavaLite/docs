@@ -20,8 +20,6 @@ Package for handling roles and permissions.
     - [Blade Extensions](#blade-extensions)
     - [Middleware](#middleware)
 - [Config File](#config-file)
-- [More Information](#more-information)
-- [License](#license)
 
 ## Installation
 
@@ -45,10 +43,9 @@ Add the package to your application service providers in `config/app.php` file.
 
 ### Config File And Migrations
 
-Publish the package config file and migrations to your application. Run these commands inside your terminal.
+Publish the package config file to your application. Run these commands inside your terminal.
 
     php artisan vendor:publish --provider="Litepie\Roles\RolesServiceProvider" --tag=config
-    php artisan vendor:publish --provider="Litepie\Roles\RolesServiceProvider" --tag=migrations
 
 And also run migrations.
 
@@ -376,7 +373,3 @@ public function render($request, Exception $e)
 ## Config File
 
 You can change connection for models, slug separator, models path and there is also a handy pretend feature. Have a look at config file for more information.
-
-## License
-
-This package is free software distributed under the terms of the MIT license.
