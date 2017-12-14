@@ -1,6 +1,6 @@
 # Form
 
-Form is us an extension of [Fromer](http://formers.github.io/former/).
+Form is an extension of [Fromer](http://formers.github.io/former/) for managing forms in the application.
 
 ## Table of Contents  
 - [Getting Statted](#getting-started)
