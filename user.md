@@ -76,3 +76,29 @@ class Client extends Authenticatable implements UserPolicy
  
  > Your authentication model shoud look like this.
 
+### Helpers
+
+Lavalite comes with the below hepler functions for the user module.
+
+#### `user_id()` {#user_id}
+
+The  `user_id()` function returner the current user id. If not authenticated it returns null.
+    
+    $attribute->user_id = user_id();
+
+#### `user_type()` {#user_type}
+
+The  `user_type()` function returner the current user modal name.
+    
+    $attribute->user_type = user_type();
+    // App/User
+
+#### `user()` {#user_modal}
+
+The  `user()` function returner the current user modal.
+    
+    user()->name;
+
+    // Super User
+
+Using 'user()' function you can access all the properties of the loggedin user.
