@@ -80,20 +80,20 @@ class Client extends Authenticatable implements UserPolicy
 
 Lavalite comes with the below hepler functions for the user module.
 
-#### `user_id()` {#user_id}
+#### `user_id()`
 
 The  `user_id()` function returner the current user id. If not authenticated it returns null.
     
     $attribute->user_id = user_id();
 
-#### `user_type()` {#user_type}
+#### `user_type()` 
 
 The  `user_type()` function returner the current user modal name.
     
     $attribute->user_type = user_type();
     // App/User
 
-#### `user()` {#user_modal}
+#### `user()` 
 
 The  `user()` function returner the current user modal.
     
