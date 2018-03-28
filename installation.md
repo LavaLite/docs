@@ -1,6 +1,9 @@
 # Installation
 
 - [Installation](#installation)
+    - [Installation](#install-lavalite)
+    - [Setup](#install-setup)
+    - [Login ](#install-login)
 - [Configuration](#configuration)
     - [Basic Configuration](#basic-configuration)
     - [Environment Configuration](#environment-configuration)
@@ -16,18 +19,16 @@
 
 The Lavalite framework has a few system requirements. 
 
-<div class="content-list" markdown="1">
-- PHP >= 7.0
-- OpenSSL PHP Extension
-- PDO PHP Extension
-- Mbstring PHP Extension
-- Tokenizer PHP Extension
-- Fileinfo PHP Extension
-- GD Library
-- Imagick PHP Extension
-</div>
+    - PHP >= 7.1
+    - OpenSSL PHP Extension
+    - PDO PHP Extension
+    - Mbstring PHP Extension
+    - Tokenizer PHP Extension
+    - Fileinfo PHP Extension
+    - GD Library
+    - Imagick PHP Extension
 
-<a name="install-laravel"></a>
+<a name="install-lavalite"></a>
 ### Installing Lavalite
 
 Lavalite utilizes [Composer](http://getcomposer.org) to manage its dependencies. So, before using Lavalite, make sure you have Composer installed on your machine.
@@ -36,11 +37,43 @@ Lavalite utilizes [Composer](http://getcomposer.org) to manage its dependencies.
 You may also install Lavalite by issuing the Composer `create-project` command in your terminal:
 
     composer create-project LavaLite/cms --prefer-dist website
-
-#### Installation
+    
+<a name="install-setup"></a>
+#### Setup 
 After creating the project move to the project root folder and run the command to set up database and configuration files. 
+```php
+php artisan lavalite:install
+```
+After installation browse to  link to view the homepage of the website or application you are building.
+```
+http://path-to-route-folder/public
+```
+    
+<a name="install-login"></a>
+#### Login details
 
-    php artisan lavalite:install
+**Administrator**
+
+```
+http://path-to-route-folder/public/admin
+```
+You can use the email id and password given at the time of Lavalite installation to login as Superuser. Superuser can manage all other type of users in the application. Lavalite come with two type of users `user` and `client`. The default login credential of `user` and `client` is as below.
+
+**User**
+
+```
+http://path-to-route-folder/public/user
+User:     user@lavalite.org 
+Password: user@lavalite
+```
+
+**Client**
+
+```
+http://path-to-route-folder/public/client
+User:     client@lavalite.org 
+Password: client@lavalite
+```
 
 <a name="configuration"></a>
 ## Configuration
