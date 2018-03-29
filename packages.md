@@ -14,9 +14,9 @@ Package creation is easy task in Lavalite, our [package builder](http://lavalite
 <a name="structure"></a>
 ## Structure
 Here is the basic folder structure for a lavalite package. Based on other functionalities you select it will generate additional codes and folders in the package.
-<pre>
+```
  Root - <i>Package root folder.</i>
- 	+ config - <i>Folder for configuration files.</i>
+ 	+ config - _Folder for configuration files._
     + database - <i>Folder for migrations & seeds.</i>
         + migrations
         + seeds
@@ -44,7 +44,7 @@ Here is the basic folder structure for a lavalite package. Based on other functi
             + Eloquent
             + Presenter
     + tests - <i>Test files</i>
-</pre>
+```
 
 <a name="installation"></a>
 ## Installation
