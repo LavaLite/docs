@@ -72,3 +72,5 @@ path/to/package/view/user-type (eg: admin / client)
 path/to/package/view/default
 ```
 If you are planing to customize view of a package based on a thme you can publish the view using the command `php artisan theme:publish` and it will guide step by step in publishing the views to the theme.  Once get published you can directly jump into the the published folder to edit the files based on your theme.
+
+> If you are  developing theme for re-distribution or sale publish the views of all packages like blog, contacts, pages etc to the theme and customize it.
