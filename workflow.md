@@ -28,50 +28,116 @@ Add the `Workflow` facade to your facades array:
     'Workflow' => Litepie\Workflow\Facades\WorkflowFacade::class,
 ```
 
-### Configuration
+### Definitions 
 
-Publish the config file
-
-```
-    php artisan vendor:publish --provider="Litepie\Workflow\WorkflowServiceProvider"
-```
-
-Configure your workflow in `config/workflow.php`
+Here is the sample definition for the work-flow
 
 ```php
-<?php
 
 return [
-    'straight'   => [
-        'type'          => 'workflow', // or 'state_machine'
-        'marking_store' => [
-            'type'      => 'multiple_state',
-            'arguments' => ['currentPlace']
-        ],
-        'supports'      => ['App\BlogPost'],
-        'places'        => ['draft', 'review', 'rejected', 'published'],
-        'transitions'   => [
-            'to_review' => [
-                'from' => 'draft',
-                'to'   => 'review'
+    
+    'workflows' => [
+    	// Single state workflow
+        'singlestatesample' => [
+            'type'          => 'state_machine',
+            'marking_store' => [
+                'type'      => 'single_state',
+                'arguments' => ['status'],
             ],
-            'publish' => [
-                'from' => 'review',
-                'to'   => 'published'
+            'supports'      => [App\Models\Posts::class],
+            'places'        => [
+                'draft',
+                'completed',
+                'verified',
+                'published'
             ],
-            'reject' => [
-                'from' => 'review',
-                'to'   => 'rejected'
-            ]
+            'transitions'   => [
+                'complete'  => [
+                    'from' => 'draft',
+                    'to'   => 'completed',
+                ],
+                'verify'    => [
+                    'from' => 'completed',
+                    'to'   => 'verified',
+                ],
+                'publish'   => [
+                    'from' => 'approved',
+                    'to'   => 'published',
+                ]
+            ],
         ],
-    ]
+        
+        
+    	// Mutilple state workflow
+        'multiplestatesample'  [
+            'type'          => 'workflow',
+            'marking_store' => [
+                'type'      => 'multiple_state',
+                'arguments' => ['status'],
+            ],
+            'supports'      => [App\Models\Posts::class],
+            'places'        => [
+                'draft',
+                'wait_for_spellchecker',
+                'wait_for_journalist',
+                'published'
+            ],
+            'transitions'   => [
+                'complete'  => [
+                    'from' => 'draft',
+                    'to'   => ['wait_for_spellchecker', 'wait_for_journalist'],
+                ],
+                'spellchecker_approval'    => [
+                    'from' => 'wait_for_spellchecker',
+                    'to'   => 'published',
+                ],
+                'journalist_approval'   => [
+                    'from' => 'wait_for_journalist',
+                    'to'   => 'published',
+                ]
+            ],
+
+        ],
+    ],
 ];
 ```
 
-Use the `WorkflowTrait` inside supported classes
+## Service provider
+
+You should bing the configuration using the workflow service provide for each packages.
+
 
 ```php
-<?php
+
+namespace App\Providers;
+
+use App\Workflow\Providers\WorkflowServiceProvider as ServiceProvider;
+
+class WrokflowServiceProvider extends ServiceProvider
+{
+
+    /**
+     * Register any package authentication / authorization services.
+     *
+     * @param \Illuminate\Contracts\Auth\Access\Gate $gate
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->workflow = config('path.to.workflows');
+        parent::registerWorkflows();
+    }
+}
+
+```
+
+
+## Trait
+
+Use the `WorkflowModalTrait` inside supported classes
+
+```php
 
 namespace App;
 
@@ -84,6 +150,7 @@ class BlogPost extends Model
 
 }
 ```
+
 ### Usage
 
 #### Using Facades
