@@ -189,32 +189,8 @@ Additionally, the user may wish to customize where your generated classes gets s
         ]
     ]
 ```
-#### COMMANDS
-In order to generate all the functions that the user needs for the respective Model, this command can be run:
 
-```php
-php artisan make:entity Post
-```
-This will create the Model, the Repository, the Presenter and the Transformer classes. 
-
-The user can also pass the options from the **repository **command, since this command is just a wrapper.
-
-To generate a repository for your Post model, the following command can be utilized
-
-```php
-php artisan make:repository Post
-```
-If you would like to implement a namespace to your blog, you could utilize the following command.
-
-```php
-php artisan make:repository "Blog\Post"
-```
-There are certain Added fields that are fillable by the user.
-
-```php
-php artisan make:repository "Blog\Post" --fillable="title,content"
-```
-When the user is running command, he/she will be creating the "Entities" folder and "Repositories" inside the folder that you set as the default.
+#### Binding the repository
 
 Done, done that just now you do bind its interface for your real repository, for example in your own Repositories Service Provider.
 
