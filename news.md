@@ -1,4 +1,6 @@
-Laravel package that provides news management facility for lavalite CMS.
+#News
+
+ Laravel package that provides news management facility for lavalite CMS.
 
 ## Installation
 
@@ -7,6 +9,11 @@ Require this package with composer.
     composer require litecms/news
 
 Laravel 5.5 uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.
+
+## Migration and seeds
+
+    php artisan migrate
+    php artisan db:seed --class=Litecms\\NewsTableSeeder
 
 
 ## Publishing

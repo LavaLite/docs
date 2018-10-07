@@ -1,3 +1,5 @@
+#Testimonial
+
 Laravel package that provides testimonial management facility for lavalite CMS.
 
 ## Installation
@@ -7,6 +9,12 @@ Require this package with composer.
     composer require litecms/testimonial
 
 Laravel 5.5 uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.
+
+## Migration and seeds
+
+    php artisan migrate
+    php artisan db:seed --class=Litecms\\TesimonialTableSeeder
+
 
 
 ## Publishing
