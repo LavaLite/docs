@@ -43,6 +43,8 @@ You may also install Lavalite by issuing the Composer `create-project` command i
 After creating the project move to the project root folder and run the command to set up database and configuration files. 
 ```php
 php artisan lavalite:install
+
+php artisan key:generate // run this command if key not generated while installing.
 ```
 After installation browse to  link to view the homepage of the website or application you are building.
 ```

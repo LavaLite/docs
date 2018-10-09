@@ -1,6 +1,6 @@
 #Testimonial
 
-Laravel package that provides testimonial management facility for lavalite CMS.
+Laravel package that provides testimonial  facility for lavalite CMS.
 
 ## Installation
 
@@ -13,7 +13,7 @@ Laravel 5.5 uses Package Auto-Discovery, so doesn't require you to manually add 
 ## Migration and seeds
 
     php artisan migrate
-    php artisan db:seed --class=Litecms\\TesimonialTableSeeder
+    php artisan db:seed --class=Litecms\\TestimonialTableSeeder
 
 
 

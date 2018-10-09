@@ -26,9 +26,6 @@ Laravel 5.5 uses Package Auto-Discovery, so doesn't require you to manually add 
 
     php artisan vendor:publish --provider="Litecms\Career\Providers\CareerServiceProvider" --tag="lang"
 
-**Files**
-
-    php artisan vendor:publish --provider="Litecms\Career\Providers\CareerServiceProvider" --tag="storage"
 
 ### Views
 

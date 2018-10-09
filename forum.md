@@ -1,12 +1,12 @@
 # Forum
 
-Laravel package that provides gallery management facility for lavalite CMS.
+Laravel package that provides forum  facility for lavalite CMS.
 
 ## Installation
 
 Require this package with composer. 
 
-    composer require litecms/gallery
+    composer require litecms/forum
 
 Laravel 5.5 uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.
 
@@ -20,26 +20,26 @@ Laravel 5.5 uses Package Auto-Discovery, so doesn't require you to manually add 
 
 **Configuration**
 
-    php artisan vendor:publish --provider="Litecms\Gallery\Providers\GalleryServiceProvider" --tag="config"
+    php artisan vendor:publish --provider="Litecms\Forum\Providers\ForumServiceProvider" --tag="config"
 
 **Language**
 
-    php artisan vendor:publish --provider="Litecms\Gallery\Providers\GalleryServiceProvider" --tag="lang"
+    php artisan vendor:publish --provider="Litecms\Forum\Providers\ForumServiceProvider" --tag="lang"
 
 **Files**
 
-    php artisan vendor:publish --provider="Litecms\Gallery\Providers\GalleryServiceProvider" --tag="storage"
+    php artisan vendor:publish --provider="Litecms\Forum\Providers\ForumServiceProvider" --tag="storage"
 
 ### Views
 
 Publish views to resources\views\vendor directory
 
-    php artisan vendor:publish --provider="Litecms\Gallery\Providers\GalleryServiceProvider" --tag="view"
+    php artisan vendor:publish --provider="Litecms\Forum\Providers\ForumServiceProvider" --tag="view"
 
 Publishes admin view to admin theme
 
-    php artisan theme:publish --provider="Litecms\Gallery\Providers\GalleryServiceProvider" --view="admin" --theme="admin"
+    php artisan theme:publish --provider="Litecms\Forum\Providers\ForumServiceProvider" --view="admin" --theme="admin"
 
 Publishes public view to public theme
 
-    php artisan theme:publish --provider="Litecms\Gallery\Providers\GalleryServiceProvider" --view="public" --theme="public"
+    php artisan theme:publish --provider="Litecms\Forum\Providers\ForumServiceProvider" --view="public" --theme="public"
