@@ -1,4 +1,4 @@
-#Team
+# Team
 
 Laravel package that provides team management facility for lavalite CMS.
 

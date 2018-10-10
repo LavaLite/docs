@@ -1,4 +1,4 @@
-#Product
+# Product
 
 Laravel package that provides product management facility for lavalite CMS.
 
