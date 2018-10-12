@@ -1,4 +1,4 @@
-#News
+# News
 
  Laravel package that provides news management facility for lavalite CMS.
 

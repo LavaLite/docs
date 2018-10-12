@@ -1,4 +1,4 @@
-# lider 
+# Slider 
 
 Laravel package that provides slider management facility for lavalite CMS.
 
