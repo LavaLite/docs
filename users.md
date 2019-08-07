@@ -1,4 +1,4 @@
-# Users
+# User Type
 
 - [Basics](#basics)
 - [Creating Users](#creating-users)
@@ -9,7 +9,7 @@
 <a name="basics"></a>
 ## Basics
 
-Laravel comes with 3 type of users `admin` `user` and `client`. For a basic cms website these 3 type of users will be enough. But when you are working for a big projects like `school management system` or `hospital management system` you have to deal with different type of users like `doctors` `office staff` `managers` `department heads` etc. 
+Lavalite comes with 3 type of users `admin` `user` and `client`. For a basic cms website these 3 type of users will be enough. But when you are working for a big projects like `school management system` or `hospital management system` you have to deal with different type of users like `doctors` `office-staff` `managers` `department-heads` etc. 
 
 <a name="creating-users"></a>
 
@@ -19,7 +19,7 @@ For a new type of user either you can make use of the existing `user` table or y
 
 <a name="user-table"></a>
 ### User Table
-If you are using user table for handling new type of user say `seller` you have to do the following steps for the same.
+If you are using `user` table for handling new type of user say `seller` you have to do the following steps for the same.
 
 #### Create Role
 For creating a role you can login to the `admin` screen and there you can add role as seller under Roles &amp; Permissions. And you can assign required permissions.
@@ -86,7 +86,8 @@ In lavalite each type of user can have separate theme or can use same theme, you
 
 Once it is finished you can directly login to the new type of user on the link `http://path/to/your/application/seller`.
 <a name="separate-table"></a>
-### Separate (new) table
+
+## New Table
 For using new table as a user type in addition to the above steps do the additional points for the same.
 
 #### Create table
@@ -101,7 +102,7 @@ namespace App;
 
 use Litepie\User\Models\Client as BaseClient;
 
-class Client extends BaseClient
+class Seller extends BaseClient
 {
     /**
      * Configuartion for the model.
@@ -146,7 +147,7 @@ Update `config/user.php` file as follows, for publishing the configuration file 
             'slugs'         => ['slug' => 'name'],
             'dates'         => ['deleted_at', 'createdat', 'updated_at'],
             'appends'       => [],
-            'fillable'      => ['name', 'email', 'password', 'api_token', 'remember_token', 'sex', 'dob', 'mobile', 'phone', 'address', 'street', 'city', 'district', 'state', 'country', 'photo', 'web', 'status', 'upload_folder', 'deleted_at', 'created_at', 'updated_at'],
+            'fillable'      => ['name', 'email', 'password', 'api_token', 'remember_token', 'sex', 'dob', 'mobile', 'phone'],
             'translatables' => [],
             'upload_folder' => 'user/seller',
             'uploads'       => [
