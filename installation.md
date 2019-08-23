@@ -40,7 +40,7 @@ You may also install Lavalite by issuing the Composer `create-project` command i
     
 <a name="install-setup"></a>
 #### Setup 
-After creating the project move to the project root folder and run the command to set up database and configuration files. 
+After creating the project move to the project root folder eg: `cd website` and run the command to set up database and configuration files. 
 ```php
 php artisan lavalite:install
 
