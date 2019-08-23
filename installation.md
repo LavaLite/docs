@@ -46,7 +46,7 @@ php artisan lavalite:install
 
 php artisan key:generate // run this command if key not generated while installing.
 ```
-After installation browse to  link to view the homepage of the website or application you are building.
+After installation run the command `php artisan serve` or browse the link to view the homepage.
 ```
 http://path-to-route-folder/public
 ```
