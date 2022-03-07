@@ -19,7 +19,7 @@
 
 The Lavalite framework has a few system requirements. 
 
-    - PHP >= 7.1
+    - PHP >= 8.0.2
     - OpenSSL PHP Extension
     - PDO PHP Extension
     - Mbstring PHP Extension
@@ -48,7 +48,7 @@ php artisan key:generate // run this command if key not generated while installi
 ```
 After installation run the command `php artisan serve` or browse the link to view the homepage.
 ```
-http://path-to-route-folder/public
+http://localhost:8000
 ```
     
 <a name="install-login"></a>
@@ -57,14 +57,14 @@ http://path-to-route-folder/public
 **Administrator**
 
 ```
-http://path-to-route-folder/public/admin
+http://localhost:8000/admin
 ```
 You can use the email id and password given at the time of Lavalite installation to login as Superuser. Superuser can manage all other type of users in the application. Lavalite come with two type of users `user` and `client`. The default login credential of `user` and `client` is as below.
 
 **User**
 
 ```
-http://path-to-route-folder/public/user
+http://localhost:8000/user
 User:     user@lavalite.org 
 Password: user@lavalite
 ```
@@ -72,7 +72,7 @@ Password: user@lavalite
 **Client**
 
 ```
-http://path-to-route-folder/public/client
+http://localhost:8000/client
 User:     client@lavalite.org 
 Password: client@lavalite
 ```
@@ -87,7 +87,7 @@ All of the configuration files for the Lavalite framework are stored in the `con
 
 #### Directory Permissions
 
-After installing Lavalite, you may need to configure some permissions. Directories within the `storage` and the `bootstrap/cache` directories should be writable by your web server. If you are using the [Homestead](/docs/{{version}}/homestead) virtual machine, these permissions should already be set.
+After installing Lavalite, you may need to configure some permissions. Directories within the `storage` and the `bootstrap/cache` directories should be writable by your web server. 
 
 #### Application Key
 
