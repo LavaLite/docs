@@ -27,6 +27,7 @@ The Lavalite framework has a few system requirements.
     - Fileinfo PHP Extension
     - GD Library
     - Imagick PHP Extension
+    - GMP PHP Extension
 
 <a name="install-lavalite"></a>
 ### Installing Lavalite
